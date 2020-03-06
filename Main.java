@@ -4,7 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class Main extends Application {
 
@@ -24,21 +30,20 @@ public class Main extends Application {
         Button bDeq = new Button("Dequeue");
         Button bPop = new Button("Pop");
         TextField txt = new TextField("Inserta un dato");
-        VBox vb2 = new VBox(txt,btn1,btn2,btn3,btn4);
+        VBox vb2 = new VBox(bPick,txt,bPush,bDeq,bPop);
         HBox hb = new HBox(vb1,vb2,vb3);
         Scene scene = new Scene(hb, 350,350);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    bDeq.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-    public void handle(MouseEvent e){
-            Colas<Integer> cola = new Colas<>();
-            cola.dequeue(txtf1);
-        }
-    }
-
 }
 
+    public void handle(MouseEvent e){
+        Pilas<Integer> pila = new Pilas<>();
+        Colas<Integer> cola = new Colas<>();
+
+
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -49,5 +54,5 @@ public class Main extends Application {
                */
 
 
-            }
+    }
 }
