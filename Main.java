@@ -30,13 +30,15 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-}
+    bDeq.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
     public void handle(MouseEvent e){
-        Pilas<Integer> pila = new Pilas<>();
-        Colas<Integer> cola = new Colas<>();
-        
-
+            Colas<Integer> cola = new Colas<>();
+            cola.dequeue(txtf1);
+        }
     }
+
+}
+
 
     public static void main(String[] args) {
         launch(args);
@@ -45,7 +47,7 @@ public class Main extends Application {
                 pila.push(5);
                 pila.pop();
                */
-   
+
 
             }
 }
