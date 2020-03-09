@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,8 @@ import javafx.scene.control.TextField;
 public class Main extends Application {
     private BorderPane bp =new BorderPane();
     private TextField dato;
-
+    private TextArea textAreaPila = new TextArea();
+    private TextArea textAreaCola = new TextArea();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -35,13 +37,16 @@ public class Main extends Application {
         Button bPeek = new Button("Peek");
         Button bPush = new Button("Push");
         Button bPop = new Button("Pop");
+        TextArea textAreaPila = new TextArea();
+        textAreaPila.setEditable(false);
+        textAreaCola.setEditable(false);
 
         bp.setPrefSize(600,575);
         bp.setCenter(vb);
         bp.setLeft(vbPila);
         bp.setRight(vbCola);
 
-        vbPila.getChildren().add(pilaLabel);
+        vbPila.getChildren().addAll(pilaLabel,textAreaPila,textAreaCola);
         vbPila.setAlignment(Pos.TOP_CENTER);
         vbCola.setAlignment(Pos.TOP_CENTER);
         vb.setAlignment(Pos.TOP_CENTER);
@@ -52,8 +57,8 @@ public class Main extends Application {
         vbCola.setPrefSize(100,575);
 
         bDeq.addEventHandler(MouseEvent.MOUSE_CLICKED, new DequeueHandler());
-        bPeek.addEventFilter(MouseEvent.MOUSE_CLICKED, new PeekHandler());
-        bPush.addEventFilter(MouseEvent.MOUSE_CLICKED, new PushHandler());
+        bPeek.addEventHandler(MouseEvent.MOUSE_CLICKED, new PeekHandler());
+        bPush.addEventHandler(MouseEvent.MOUSE_CLICKED, new PushHandler());
 
         Group g = new Group();
         g.getChildren().add(bp);
@@ -61,14 +66,17 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-         public class DequeueHandler implements EventHandler<MouseEvent>{
+
+    public class DequeueHandler implements EventHandler<MouseEvent>{
         @Override
         public void handle(MouseEvent event){
             Cola<String> cola = new Cola<>();
             cola.dequeue();
+            textAreaCola.setText(String.valueOf(dato));
+
         }
     }
-
+//Agregar Excepción
     public class PeekHandler implements EventHandler<MouseEvent>{
         @Override
         public void handle(MouseEvent event) {
@@ -78,15 +86,19 @@ public class Main extends Application {
             pila.peek();
         }
     }
-
+//Agregar Excepción
     public class PushHandler implements EventHandler<MouseEvent>{
         @Override
         public void handle(MouseEvent event) {
-            Pila<String> pila = new Pila<>();
-            Cola<String> cola = new Cola<>();
-            pila.push(dato.getText());
-            cola.enque(dato.getText());
+            try {
+                Pila<String> pila = new Pila<>();
+                Cola<String> cola = new Cola<>();
+                cola.enque(dato.getText());
+                textAreaCola.setText(pila.push(dato.getText()));
 
+            }catch(Exception e){
+                System.out.println("no");
+            }
         }
     }
 
