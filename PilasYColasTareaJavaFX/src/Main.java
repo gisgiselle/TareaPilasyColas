@@ -55,12 +55,17 @@ public class Main extends Application{
 
         Button btnPop = new Button("Pop");
 
+        Button btnPeekCola = new Button("Peek Cola");
+
+        Button btnPeekPila = new Button("Peek Pila");
+
+
         Label sacarLb = new Label("El dato que sacaste es: ");
         sacarLb.setVisible(false);
         Label datoLb = new Label();
 
 
-        buttonsVB.getChildren().addAll(valoresLb, valoresTF, btnCola, btnDequeue, btnPila, btnPop, sacarLb,datoLb);
+        buttonsVB.getChildren().addAll(valoresLb, valoresTF, btnCola, btnDequeue, btnPila, btnPop,  btnPeekCola, btnPeekPila,sacarLb,datoLb);
         buttonsVB.setAlignment(Pos.CENTER);
 
         mainGP.setConstraints(buttonsVB,1, 0);
@@ -129,7 +134,28 @@ public class Main extends Application{
                                pilaTA.setText(pila.listaValores());
                                 }
                             );
+        btnPeekCola.setOnAction(a->{ sacarLb.setText("El dato de peek en cola es: ");
+                                    sacarLb.setVisible(true);
+                                    datoLb.setVisible(true);
 
+                                    if(colaTA.getText().isEmpty()){
+                                    datoLb.setText("No hay datos en la cola");}
+                                    else{
+                                            datoLb.setText(cola.peek());}
+
+                                    }
+
+                                );
+
+        btnPeekPila.setOnAction(a->{sacarLb.setText("El dato de peek en pila es: ");
+                                    sacarLb.setVisible(true);
+                                    datoLb.setVisible(true);
+                                    if(pilaTA.getText().isEmpty()){
+                                    datoLb.setText("No hay datos en la pila");}
+                                    else{
+                                        datoLb.setText(pila.peek());
+                                    }
+        });
 
 
 

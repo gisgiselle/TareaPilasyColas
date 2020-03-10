@@ -23,13 +23,7 @@ public class ColaSinLista<T> {
 
     //Método que te regresa el elemento de la última posición sin modificarla
     public T peek(){
-        Nodo<T> temp = inicial;
-        while(temp.getSiguiente()!=null){
-            temp = temp.getSiguiente();
-        }
-        return temp.getElemento();
-
-
+        return inicial.getElemento();
     }
 
     //Te regresa el primer elemento que metiste a la Cola e inicial lo cambia por el siguiente.
